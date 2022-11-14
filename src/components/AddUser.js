@@ -23,10 +23,11 @@ const AddUser = (props) => {
     ) {
       return;
     }
-    if (enteredUserage < 0) {
+    if (+enteredUserage < 0) {
       return;
     }
     console.log(enteredUsername, enteredUserage);
+    props.getFormData(enteredUsername,enteredUserage);
     setEnteredUsername("");
     setEnteredUserage("");
   };
