@@ -7,6 +7,7 @@ import ErrorModal from "./ErrorModal";
 const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredUserage, setEnteredUserage] = useState("");
+  const [enteredUserclg, setEnteredUserclg] = useState("");
   const [error, setError] = useState();
 
   const usernameChangeHandler = (event) => {
@@ -15,6 +16,10 @@ const AddUser = (props) => {
 
   const userageChangeHandler = (event) => {
     setEnteredUserage(event.target.value);
+  };
+
+  const userclgChangeHandler = (event) => {
+    setEnteredUserclg(event.target.value);
   };
 
   const errorHandler = () => {
@@ -41,10 +46,11 @@ const AddUser = (props) => {
       });
       return;
     }
-    console.log(enteredUsername, enteredUserage);
-    props.getFormData(enteredUsername, enteredUserage);
+    console.log(enteredUsername, enteredUserage, enteredUserclg);
+    props.getFormData(enteredUsername, enteredUserage, enteredUserclg);  // passing data to the parent component App.js
     setEnteredUsername("");
     setEnteredUserage("");
+    setEnteredUserclg("");
   };
 
   return (
@@ -71,6 +77,13 @@ const AddUser = (props) => {
             id="age"
             onChange={userageChangeHandler}
             value={enteredUserage}
+          />
+           <label htmlFor="clg"> College name</label>
+           <input
+            type="text"
+            id="clg"
+            onChange={userclgChangeHandler}
+            value={enteredUserclg}
           />
           <Button type="submit">Add User</Button>
         </form>

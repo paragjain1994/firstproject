@@ -1,21 +1,27 @@
-import React , {useState} from 'react';
-import AddUser from './components/AddUser';
-import UsersList from './components/UsersList';
+import React, { useState } from "react";
+import AddUser from "./components/AddUser";
+import UsersList from "./components/UsersList";
 
 function App() {
-  const [usersList,setUsersList] = useState([]);
+  const [usersList, setUsersList] = useState([]);
 
-  const getFormDataHandler=(uName,uAge)=>{
-    setUsersList((prevUsersList)=>{
-      return [...prevUsersList,{name:uName,age:uAge,id:Math.random().toString()}]
-    })
-  }
+   //  fetching data coming from child component AddUser.js
+  const getFormDataHandler = (uName, uAge, uClg) => {      
+
+    const updatedUsersList = [...usersList,{name: uName, age: uAge, clg: uClg, id: Math.random().toString() }];
+    setUsersList(updatedUsersList);
+    // setUsersList((prevUsersList) => {
+    //   return [
+    //     ...prevUsersList,
+    //     { name: uName, age: uAge, id: Math.random().toString() },
+    //   ];
+    // });
+  };
 
   return (
     <div>
-<h1>React first project</h1>
-<AddUser getFormData={getFormDataHandler}></AddUser>
-<UsersList users={usersList}></UsersList>
+      <AddUser getFormData={getFormDataHandler}></AddUser>
+      <UsersList users={usersList}></UsersList>
     </div>
   );
 }
